@@ -43,7 +43,7 @@ Le NBM doit modéliser le comportement **normal en production**, pas les périod
 - ON  : turbine en production → relation physique SCADA → puissance exploitable.
 
 ➡️ On utilise une règle simple et stable :
-- `ON` si `TARGET >= 10 kW` (seuil opérationnel choisi)
+- `ON` si `TARGET >= 9 kW` (seuil opérationnel choisi)
 - sinon `OFF`
 
 Le modèle de régression (DNN et baselines) est entraîné **uniquement sur TRAIN_ON**.
