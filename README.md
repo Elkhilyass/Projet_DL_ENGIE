@@ -1,3 +1,6 @@
+## Teaam
+- DAHAOUI Ilyas & EL KHAZANE Ilyasse
+
 # ENGIE Wind Turbine Power Prediction & NBM Anomaly Detection (WT1)
 
 Ce dépôt contient un projet complet de modélisation de la production éolienne (puissance active) à partir de données SCADA (pas de 10 minutes), avec une approche **NBM (Normal Behavior Modeling)** :  
@@ -42,7 +45,7 @@ Le NBM doit modéliser le comportement **normal en production**, pas les périod
 - OFF : turbine à l’arrêt → `TARGET ≈ 0`, signaux moins interprétables.
 - ON  : turbine en production → relation physique SCADA → puissance exploitable.
 
-➡️ On utilise une règle simple et stable :
+ On utilise une règle simple et stable :
 - `ON` si `TARGET >= 9 kW` (seuil opérationnel choisi)
 - sinon `OFF`
 
@@ -71,7 +74,7 @@ Le modèle de régression (DNN et baselines) est entraîné **uniquement sur TRA
 Deux niveaux :
 - **Point anomalies** : dépassement d’un seuil `thr_point` (ex: quantile 0.995) sur `|res|`
 - **State anomalies** : dépassement persistant de `thr_state` sur `abs_res_smooth` (ex: quantile 0.99)  
-➡️ On extrait des événements (start/end/durée/gravité).
+   On extrait des événements (start/end/durée/gravité).
 
 ### 6) Étiquetage métier (heuristiques)
 Un événement est comparé à une fenêtre de référence avant l’événement (1h typiquement) pour proposer un label :
@@ -81,7 +84,7 @@ Un événement est comparé à une fenêtre de référence avant l’événement
 - `OVERPERFORMANCE_OR_DISTRIBUTION_SHIFT`
 - `UNDERPERFORMANCE_UNSPECIFIED`
 
-⚠️ Ces labels sont des hypothèses explicables (pas des vérités sans logs de maintenance).
+ Ces labels sont des hypothèses explicables (pas des vérités sans logs de maintenance).
 
 ---
 
