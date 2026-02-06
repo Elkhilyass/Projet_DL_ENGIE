@@ -271,29 +271,30 @@ Pour contextualiser les performances du DNN, trois algorithmes de Machine Learni
 ## Résultats
 
 ### Performances Prédictives (TEST_ON)
+| Modèle | MAE (kW) |
+|--------|----------|
+| **XGBoost** | **17.86** |
+| Hist. Gradient Boosting | 23.29 |
+| DNN (réseau gated) | 33.43 |
+| Elastic Net | 58.31 |
 
-| Modèle | MAE (kW) | RMSE (kW) | R² |
-|--------|----------|-----------|-----|
-| **XGBoost** | **17.0** | 25.3 | 0.982 |
-| **DNN** | **18.5** | 27.1 | 0.978 |
-| Hist. Gradient Boosting | 19.2 | 28.4 | 0.975 |
-| Elastic Net | 32.6 | 45.8 | 0.912 |
 
 ### Analyse des Résultats
 
-- **XGBoost** obtient la meilleure performance brute (MAE ≈ 17 kW)
-- **DNN** reste très compétitif avec une MAE de 18.5 kW et un R² de 0.978
-- L'écart DNN/XGBoost (1.5 kW) est négligeable par rapport à la puissance nominale
-- **Elastic Net** confirme la forte non-linéarité des relations (performances 2x inférieures)
+- **XGBoost** obtient la meilleure performance prédictive avec une MAE de **17.86 kW**
+- **Hist. Gradient Boosting** présente également de bonnes performances avec une MAE de **23.29 kW**, mais reste inférieur à XGBoost
+- Le **DNN (réseau de neurones gated)** affiche une MAE plus élevée (**33.43 kW**), indiquant une performance prédictive moindre dans cette configuration
+- **Elastic Net** confirme la forte non-linéarité des relations entre variables SCADA et puissance produite, avec des performances nettement inférieures (**MAE = 58.31 kW**)
 
 ### Choix du Modèle Final : DNN
 
-Malgré des performances légèrement inférieures à XGBoost, le DNN a été retenu comme modèle principal pour :
+Malgré des performances prédictives inférieures à celles des modèles de boosting, le DNN a été retenu comme modèle principal pour les raisons suivantes :
 
-1. **Adéquation à l'objectif NBM** : Meilleure intégration dans une approche de détection d'anomalies
-2. **Flexibilité architecturale** : Possibilité d'extensions (LSTM, attention, multi-task learning)
-3. **Contrôle de la régularisation** : Ajustement fin du compromis biais-variance pour la détection
-4. **Capacité d'évolution** : Intégration future de données temporelles, séquentielles ou multimodales
+1. **Adéquation à l'objectif NBM** : Le DNN permet une modélisation continue et lisse du comportement nominal, particulièrement adaptée à l’analyse des résidus pour la détection d’anomalies
+2. **Flexibilité architecturale** : Possibilité d’extensions futures vers des architectures plus complexes (LSTM, mécanismes d’attention, modèles hybrides)
+3. **Contrôle de la régularisation** : Ajustement fin du compromis biais–variance, favorisant la robustesse des résidus plutôt que la performance ponctuelle
+4. **Capacité d’évolution** : Intégration future de données temporelles, séquentielles ou multimodales dans un cadre cohérent de deep learning
+
 
 ---
 
