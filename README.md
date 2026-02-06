@@ -1,4 +1,4 @@
-## Teaam
+## Team
 - DAHAOUI Ilyas & EL KHAZANE Ilyasse
 
 # ENGIE Wind Turbine Power Prediction & NBM Anomaly Detection (WT1)
